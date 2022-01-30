@@ -23,7 +23,6 @@ from events.views import CreateEvent,UpdateEvent,register_event,event_detail,eve
 from clubs.views import  ClubCreation,club_list,clubdetail
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',index),
     path('accounts/', include('allauth.urls')),
     path('accounts/register', register_view.as_view()),
     path('accounts/profile', profile_view),
@@ -33,8 +32,6 @@ urlpatterns = [
     path('events/register', register_event),
     path('events/<pk>',event_detail),
     path('clubs/add', ClubCreation.as_view()),
-    path('clubs/clubs', club_list),
+    path('clubs', club_list),
     path('clubs/detail/<pk>', clubdetail),
-]+static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)
-
-urlpatterns += [re_path(r'^.*',TemplateView.as_view(template_name = 'index.html'))]
+]
